@@ -91,7 +91,7 @@ class LoginView(APIView):
                         'user': user_data
                     }
                 }
-                return Response(response_data, status=status.HTTP_200_OK)
+                return Response(response_data, status=status.HTTP_201_CREATED)
             else:
                 return Response({
                     'status': 'error',
