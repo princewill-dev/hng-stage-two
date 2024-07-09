@@ -13,20 +13,6 @@ from django.http import Http404
 from django.shortcuts import get_object_or_404
 
 User = get_user_model()
-
-
-
-
-
-
-
-# return a json hello message
-class IndexView(APIView):
-    def get(self, request):
-        status_code = status.HTTP_200_OK
-        message = "Connection was successful"
-
-        return Response({"message": message}, status=status_code)
     
 
 class RegisterView(APIView):
@@ -91,7 +77,7 @@ class LoginView(APIView):
                         'user': user_data
                     }
                 }
-                return Response(response_data, status=status.HTTP_201_CREATED)
+                return Response(response_data, status=status.HTTP_200_OK)
             else:
                 return Response({
                     'status': 'error',
