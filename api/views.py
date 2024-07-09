@@ -16,6 +16,10 @@ User = get_user_model()
 
 
 
+
+
+
+
 # return a json hello message
 class IndexView(APIView):
     def get(self, request):
@@ -31,7 +35,6 @@ class RegisterView(APIView):
         if serializer.is_valid():
             user = serializer.save()
             
-            # Create a default organization for the user
             org_name = f"{user.firstName}'s Organisation"
             organisation = Organisation.objects.create(
                 name=org_name,
@@ -42,7 +45,6 @@ class RegisterView(APIView):
             refresh = RefreshToken.for_user(user)
             user_data = UserResponseSerializer(user).data
             
-            # Include organization data in the response
             org_data = OrganisationSerializer(organisation).data
             
             response_data = {
@@ -55,7 +57,6 @@ class RegisterView(APIView):
             }
             return Response(response_data, status=status.HTTP_201_CREATED)
         
-        # Collect and format the validation errors
         errors = []
         for field, messages in serializer.errors.items():
             for message in messages:
