@@ -50,8 +50,7 @@ class RegisterView(APIView):
                 'message': 'Registration successful',
                 'data': {
                     'accessToken': str(refresh.access_token),
-                    'user': user_data,
-                    'organisation': org_data
+                    'user': user_data
                 }
             }
             return Response(response_data, status=status.HTTP_201_CREATED)
